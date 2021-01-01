@@ -20,5 +20,6 @@ public:
 
     int         length              ();
     void        print               ();
+    void        reverse             ();
 
 };

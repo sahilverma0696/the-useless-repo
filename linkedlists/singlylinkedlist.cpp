@@ -48,7 +48,6 @@ void        SinglyLinkedList::insertNode    (int value, int position)
         }
         previous_pointer->next= new_node;
         new_node->next = pointer;
-
     }
 }
 
@@ -115,4 +114,22 @@ void        SinglyLinkedList::print         ()
     }
     std::cout<<"\b\b  \n";
     pointer = nullptr;
+}
+
+void        SinglyLinkedList::reverse       ()
+{
+    node* previous = nullptr;
+    node* current  = head;
+    node* next = nullptr;
+
+    while(current!= nullptr){
+   
+        next = current->next;
+        current->next = previous;
+        previous = current;
+        current = next;
+       
+    }
+    head = previous;
+
 }
