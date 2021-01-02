@@ -1,5 +1,4 @@
 #include<iostream>
-using namespace std;
 
 struct DoublyLinkedList{
     int value;
@@ -11,7 +10,7 @@ struct DoublyLinkedList{
     }
 };
 
-void InsertNode(DoublyLinkedList* &head,int data, int position)
+void insert_node(DoublyLinkedList* &head,int data, int position)
 {
     DoublyLinkedList* pointer = head;
     DoublyLinkedList* previous_pointer = nullptr;
@@ -20,7 +19,7 @@ void InsertNode(DoublyLinkedList* &head,int data, int position)
     DoublyLinkedList* new_node = new DoublyLinkedList();
     new_node->value = data;
 
-    if(!new_node)
+    if(!new_node) 
     {
         std::cout<<"Memory not allocated";
     }
@@ -59,7 +58,8 @@ int length(DoublyLinkedList* head)
 {
     DoublyLinkedList* pointer = head;
     int length = 0;
-    while(pointer!=nullptr){
+    while(pointer!=nullptr)
+    {
         length++;
         pointer = pointer->next;
     }
@@ -71,24 +71,29 @@ void print(DoublyLinkedList* head)
     DoublyLinkedList* pointer = head;
     while(pointer!= nullptr)
     {
-        cout<<pointer->value;
+        std::cout<<pointer->value<<"->";
         pointer = pointer->next;
     }
+    std::cout<<"\b\b  \n";
+    pointer = nullptr;
 }
 
-void print_reverse(DoublyLinkedList* head){
+void print_reverse(DoublyLinkedList* head)
+{
     DoublyLinkedList* pointer = head;
-    while(pointer!=nullptr)
+    while(pointer->next!=nullptr)
         pointer = pointer->next;
     
-    while(pointer->previous!=nullptr)
+    while(pointer!=nullptr)
     {
-        cout<<pointer->value;
+        std::cout<<pointer->value<<"->";
         pointer = pointer->previous;
     }
+    std::cout<<"\b\b";
 }
 
-void deletedll(DoublyLinkedList* &head, int position)
+
+void delete_dll(DoublyLinkedList* &head, int position)
 {
     DoublyLinkedList* pointer = head;
     DoublyLinkedList* previous_pointer = nullptr;
@@ -98,7 +103,7 @@ void deletedll(DoublyLinkedList* &head, int position)
     {
         if(pointer== nullptr)
         {
-            cout<<"List empty";
+            std::cout<<"List empty";
         }
         else
         {
@@ -116,13 +121,20 @@ void deletedll(DoublyLinkedList* &head, int position)
         }
         if(pointer == nullptr)
         {
-            cout<<"Out of memory";
+            std::cout<<"Out of memory";
+        }
+        else if( pointer->next==nullptr)
+        {
+            previous_pointer->next = nullptr;
+            delete pointer;
+            pointer = nullptr;
         }
         else
         {
-            previous_pointer = pointer->next;
+            previous_pointer->next = pointer->next;
             pointer = pointer ->next;
             pointer->previous = previous_pointer;
+
         }
     }
     
@@ -131,12 +143,14 @@ void deletedll(DoublyLinkedList* &head, int position)
 int main()
 {   
     DoublyLinkedList* node = new DoublyLinkedList();
-    node->value = 0;
-    InsertNode(node,1,0);
-    InsertNode(node,2,2);
+    node->value = 1;
+    insert_node(node,0,0); // Insert front
+    insert_node(node,2,2); // Insert back
+    insert_node(node,5,1); // Insert in-between
     print(node);
-    cout<<length(node);
-    deletedll(node,1);
+    std::cout<<length(node)<<"\n";
+    delete_dll(node,3);
     print(node);
+    print_reverse(node);
     return 0;
 }
