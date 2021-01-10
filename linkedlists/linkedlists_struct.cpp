@@ -5,11 +5,18 @@ using namespace std;
 struct SinglyLinkedList{
     int value;
     SinglyLinkedList* next;
-    SinglyLinkedList(int x):value(x),next(nullptr){};
+    SinglyLinkedList():next(nullptr){};
 
 };
 
-int listlength(SinglyLinkedList *head){
+int listlength(SinglyLinkedList *head);
+void insertNode(SinglyLinkedList* &head, int data, int position);
+void printNodes(SinglyLinkedList* head);
+void deleteNode(SinglyLinkedList* &head, int position);
+bool cycle_detection(SinglyLinkedList* head);
+
+int listlength(SinglyLinkedList *head)
+{
     int count =0;
     SinglyLinkedList* pointer = head;
     while(pointer!=nullptr){
@@ -19,10 +26,12 @@ int listlength(SinglyLinkedList *head){
     return count;
 }
 
-void insertNode(SinglyLinkedList* &head, int data, int position){
+void insertNode(SinglyLinkedList* &head, int data, int position)
+{
     SinglyLinkedList* pointer = head;
 
-    SinglyLinkedList* new_node = new SinglyLinkedList(data);
+    SinglyLinkedList* new_node = new SinglyLinkedList();
+    new_node->value = data;
     int pointer_pos = 0;
     SinglyLinkedList* previous_pointer = nullptr;
     if(!new_node){
@@ -51,9 +60,10 @@ void printNodes(SinglyLinkedList* head)
         cout<<pointer->value<<"->";
         pointer= pointer->next;
     }
-    cout<<"\n";
+    cout<<"\b\b  \n";
 }
-void deleteNode(SinglyLinkedList* &head, int position){
+void deleteNode(SinglyLinkedList* &head, int position)
+{
     SinglyLinkedList* pointer = head;
     SinglyLinkedList* previous_pointer = nullptr;
     int pointer_position = 0;
@@ -101,11 +111,11 @@ bool cycle_detection(SinglyLinkedList* head)
     }
 }
 
-
+/*
 int main()
 {
-    SinglyLinkedList* node = new SinglyLinkedList(5);
-    
+    SinglyLinkedList* node = new SinglyLinkedList();
+    node->value = 5;
 
     //cout<<listlength(node)<<"\n";
     printNodes(node);
@@ -122,3 +132,4 @@ int main()
     node=nullptr;
     return 0;
 }
+*/
