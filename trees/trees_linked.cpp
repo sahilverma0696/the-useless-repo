@@ -55,10 +55,48 @@ void insert(Node* &root, int root_value)
         
     }
 }
+void print_pre_order(Node* node)
+{
+    if(node != nullptr)
+    {
+        std::cout<<node->data<<"\n";
+        print_pre_order(node->left);
+        print_pre_order(node->right);
+
+    }
+}
+void print_in_order(Node* node)
+{
+    if(node != nullptr)
+    {
+        
+        print_in_order(node->left);
+        std::cout<<node->data<<"\n";
+        print_in_order(node->right);
+
+    }
+}
+void print_post_order(Node* node)
+{
+    if(node != nullptr)
+    {
+        
+        print_post_order(node->left);
+        print_post_order(node->right);
+        std::cout<<node->data<<"\n";
+
+    }
+}
 
 int main()
 {
     Node* root = new Node();
     insert(root,1);
+    print_pre_order(root);
+    std::cout<<"\n";
+    print_in_order(root);
+    std::cout<<"\n";
+    print_post_order(root);
+    std::cout<<"\n";
     return 0;
 }
