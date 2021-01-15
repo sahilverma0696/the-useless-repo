@@ -88,6 +88,28 @@ void print_post_order(Node* node)
     }
 }
 
+void print_level_order( Node* root)
+{
+    Node* current_pointer = nullptr;
+    std::queue<Node*> que;
+    que.push(root);
+    std::cout<<root->data<<"\t";
+    while(!que.empty())
+    {
+        current_pointer = que.front();que.pop();
+        if(current_pointer->left!=nullptr)
+        {
+            std::cout<<(current_pointer->left)->data<<"\t";
+            que.push(current_pointer->left);
+        }
+        if(current_pointer->right!= nullptr)
+        {
+            std::cout<<(current_pointer->right)->data<<"\t";
+            que.push(current_pointer->right);
+        }
+    }
+}
+
 int main()
 {
     Node* root = new Node();
@@ -98,5 +120,6 @@ int main()
     std::cout<<"\n";
     print_post_order(root);
     std::cout<<"\n";
+    print_level_order(root);
     return 0;
 }
