@@ -110,6 +110,38 @@ void print_level_order( Node* root)
     }
 }
 
+int count_node(Node* node)
+{
+    int x = 0; int y = 0;
+
+    if(node != nullptr){
+        x = count_node(node->left);
+        y = count_node(node->right);
+        return x+y+1;
+    }
+    return 0;
+
+}
+
+int count_leaf_node(Node* node)
+{
+    int x,y =0;
+    if(node!=nullptr)
+    {
+        x = count_leaf_node(node->left);
+        y = count_leaf_node(node->right);
+        if(node->left == nullptr && node->right == nullptr)
+        {
+            return x+y+1;
+        }
+        else
+        {
+            return x+y;
+        }
+    }
+    return 0;
+
+}
 int main()
 {
     Node* root = new Node();
@@ -121,5 +153,8 @@ int main()
     print_post_order(root);
     std::cout<<"\n";
     print_level_order(root);
+    std::cout<<"\n"<<count_node(root);
+    std::cout<<"\n"<<count_leaf_node(root);
+
     return 0;
 }
