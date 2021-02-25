@@ -31,13 +31,14 @@ dll_end_points::dll_end_points()
     head = nullptr;
     tail = nullptr;
 }
-dll_end_points* emptyDLL();
-void makeDLL(Node* &root, std::vector<int> &values);
-void insert_tail(Node* &tail,int value);
-void insert_head(Node* &root,int value);
-void print_dll(Node* root);
 
-dll_end_points* emptyDLL()
+dll_end_points* emptyDLL    ();
+void    makeDLL             (Node* &root, std::vector<int> &values);
+void    insert_tail         (Node* &tail,int value);
+void    insert_head         (Node* &root,int value);
+void    print_dll           (Node* root);
+
+dll_end_points* emptyDLL    ()
 {
     Node* head = new Node();
     Node* tail = new Node();
@@ -50,7 +51,7 @@ dll_end_points* emptyDLL()
     ends->tail = tail;
     return ends;
 }
-void makeDLL(Node* &root, std::vector<int> &values)
+void    makeDLL             (Node* &root, std::vector<int> &values)
 {
     if(root == nullptr)
         return;
@@ -63,7 +64,7 @@ void makeDLL(Node* &root, std::vector<int> &values)
 
 }
 
-void insert_tail(Node* &tail,int value)
+void    insert_tail         (Node* &tail,int value)
 {
     if(tail->previous == nullptr)
         return;
@@ -79,7 +80,7 @@ void insert_tail(Node* &tail,int value)
     tail->previous = new_node;
 }
 
-void insert_head(Node* &root,int value)
+void    insert_head         (Node* &root,int value)
 {
     if(root == nullptr)
         return;
@@ -93,7 +94,7 @@ void insert_head(Node* &root,int value)
     new_node->next = next;
     next->previous = new_node;
 }
-void print_dll(Node* root)
+void    print_dll           (Node* root)
 {
     if(root == nullptr)
         return;
@@ -106,7 +107,6 @@ void print_dll(Node* root)
     }
     std::cout<<"\n";
 }
-
 
 }
 

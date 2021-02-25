@@ -5,6 +5,7 @@
 
 #include"../dll/dll.cpp"
 
+
 namespace binary_tree
 {
 
@@ -17,33 +18,35 @@ struct Node
 };
 
 //prototypes
-void insert_node(Node* root);
-void insert_node(Node* root,std::queue<int> values);
-void print_preorder(Node* node);
-void print_inorder(Node* node);
-void print_postorder(Node* node);
-void depth_first_print(Node* root);
-void breadth_first_print(Node* root);
-void print_leaf_nodes(Node* root);
-int  count_leaf_nodes(Node* root);
-void top_view(Node* root);
-void __top_view_helper__(Node* root,std::map<int,int> &map,int h_dist);
-void bottom_view(Node* root);
-void __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist);
-void left_view(Node* root);
-void right_view(Node* root);
-dll::dll_end_points* binary_tree_to_dll(Node* root);
-void delete_node(Node* &root, int value);// have to complete
-int  getLevel(Node* root);
-int  getHeight(Node* root);
-int  getEdges(Node* root);
-Node::Node()
+void    insert_node         (Node* root);
+void    insert_node         (Node* root,std::queue<int> values);
+void    print_preorder      (Node* node);
+void    print_inorder       (Node* node);
+void    print_postorder     (Node* node);
+void    depth_first_print   (Node* root);
+void    breadth_first_print (Node* root);
+void    print_leaf_nodes    (Node* root);
+int     count_leaf_nodes    (Node* root);
+void    top_view            (Node* root);
+void    __top_view_helper__ (Node* root,std::map<int,int> &map,int h_dist);
+void    bottom_view         (Node* root);
+void    __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist);
+void    left_view           (Node* root);
+void    right_view          (Node* root);
+dll::   dll_end_points* binary_tree_to_dll(Node* root);
+void    delete_node         (Node* &root, int value);// have to complete
+int     getLevel            (Node* root);
+int     getHeight           (Node* root);
+int     getEdges            (Node* root);
+Node*   getLastNode         (Node* root);
+
+Node::  Node()
 {
     left = nullptr;
     right = nullptr;
     val = 0;
 }
-void insert_node(Node* root)
+void    insert_node         (Node* root)
 {
     if(root == nullptr)
         return;
@@ -88,7 +91,7 @@ void insert_node(Node* root)
 
 }
 
-void insert_node(Node* root,std::queue<int> values)
+void    insert_node         (Node* root,std::queue<int> values)
 {
     if(root == nullptr && values.empty())
         return;
@@ -112,7 +115,7 @@ void insert_node(Node* root,std::queue<int> values)
     }
 
 }
-void print_preorder(Node* node)
+void    print_preorder      (Node* node)
 {
     if(node!= nullptr)
     {
@@ -122,7 +125,7 @@ void print_preorder(Node* node)
     }
 }
 
-void print_inorder(Node* node)
+void    print_inorder       (Node* node)
 {
     if(node!=nullptr)
     {
@@ -132,7 +135,7 @@ void print_inorder(Node* node)
     }
 }
 
-void print_postorder(Node* node)
+void    print_postorder     (Node* node)
 {
     if(node!= nullptr)
     {
@@ -142,7 +145,7 @@ void print_postorder(Node* node)
     }
 }
 
-void depth_first_print(Node* root)
+void    depth_first_print   (Node* root)
 {
     Node* current = root;
     std::stack<Node*> stack_dfs;
@@ -161,7 +164,7 @@ void depth_first_print(Node* root)
 
 }
 
-void breadth_first_print(Node* root)
+void    breadth_first_print (Node* root)
 {
     if(root == nullptr)
     return;
@@ -184,7 +187,7 @@ void breadth_first_print(Node* root)
 }
 
 
-void print_leaf_nodes(Node* root)
+void    print_leaf_nodes    (Node* root)
 {   
     if(root->left == nullptr && root->right == nullptr)
     {
@@ -196,7 +199,7 @@ void print_leaf_nodes(Node* root)
 
 }
 
-int count_leaf_nodes(Node* root)
+int     count_leaf_nodes    (Node* root)
 {
     if(root->left  == nullptr || root->right == nullptr)
         return 1;
@@ -204,7 +207,7 @@ int count_leaf_nodes(Node* root)
     return count_leaf_nodes(root->left) + count_leaf_nodes(root->right);
 }
 
-void top_view(Node* root)
+void    top_view            (Node* root)
 {
     if(root == nullptr)
         return;
@@ -217,7 +220,7 @@ void top_view(Node* root)
     std::cout<<"\n";
 }
 
-void __top_view_helper__(Node* root,std::map<int,int> &map,int h_dist)
+void    __top_view_helper__ (Node* root,std::map<int,int> &map,int h_dist)
 {
     if(root == nullptr)
         return;
@@ -228,7 +231,7 @@ void __top_view_helper__(Node* root,std::map<int,int> &map,int h_dist)
     
 }
 
-void bottom_view(Node* root)
+void    bottom_view         (Node* root)
 {   if(root == nullptr)
     return;
 
@@ -238,7 +241,7 @@ void bottom_view(Node* root)
         std::cout<<itr->second<<" ";
     std::cout<<"\n";
 }
-void __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist)
+void    __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist)
 {
     if(root == nullptr)
         return;
@@ -247,7 +250,7 @@ void __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist)
     __bottom_view_helper__(root->left,map,h_dist -1);
     __bottom_view_helper__(root->right,map,h_dist +1);
 }
-void left_view(Node* root)
+void    left_view           (Node* root)
 {
     if(root == nullptr)
         return;
@@ -267,7 +270,7 @@ void left_view(Node* root)
         }
     }
 }
-void right_view(Node* root)
+void    right_view          (Node* root)
 {
     if(root == nullptr)
         return;
@@ -290,7 +293,7 @@ void right_view(Node* root)
     std::cout<<"\n";
 }
 
-dll::dll_end_points* binary_tree_to_dll(Node* root)
+dll::   dll_end_points* binary_tree_to_dll(Node* root)
 {
     if(root == nullptr)
         return nullptr;
@@ -312,13 +315,13 @@ dll::dll_end_points* binary_tree_to_dll(Node* root)
 
 }
 
-void delete_node(Node* &root, int value)
+void    delete_node         (Node* &root, int value)
 {
 
     return;
 }
 
-int getLevel(Node* root)
+int     getLevel            (Node* root)
 {
     if(root->left == nullptr || root->right == nullptr)
         return 1;
@@ -329,7 +332,7 @@ int getLevel(Node* root)
     return (left>right)?left:right;
 }
 
-int getHeight(Node*root)
+int     getHeight           (Node*root)
 {
     if(root->left == nullptr || root->right == nullptr)
         return 0;
@@ -340,7 +343,7 @@ int getHeight(Node*root)
     return (left>right)?left:right;
 }
 
-int getEdges(Node* root)
+int     getEdges            (Node* root)
 {
     if(root->left == nullptr && root->right == nullptr)
         return 0;
@@ -368,7 +371,7 @@ int main()
     //depth_first_print(root);
 
     //print_leaf_nodes(root);
-    //std::cout<<count_leaf_nodes(root);
+    std::cout<<count_leaf_nodes(root);
 
     //top_view(root);
     //bottom_view(root);
