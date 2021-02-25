@@ -2,6 +2,9 @@
 #include<queue>
 #include<stack>
 #include<map>
+
+#include"../dll/dll.cpp"
+
 namespace binary_tree
 {
 
@@ -21,7 +24,7 @@ void print_inorder(Node* node);
 void print_postorder(Node* node);
 void depth_first_print(Node* root);
 void breadth_first_print(Node* root);
-void delete_node(Node* &root, int value);
+void delete_node(Node* &root, int value);// have to complete
 void print_leaf_nodes(Node* root);
 void top_view(Node* root);
 void __top_view_helper__(Node* root,std::map<int,int> &map,int h_dist);
@@ -29,7 +32,7 @@ void bottom_view(Node* root);
 void __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist);
 void left_view(Node* root);
 void right_view(Node* root);
-
+dll::dll_end_points* binary_tree_to_dll(Node* root);
 
 Node::Node()
 {
@@ -280,6 +283,27 @@ void right_view(Node* root)
     std::cout<<"\n";
 }
 
+dll::dll_end_points* binary_tree_to_dll(Node* root)
+{
+    if(root == nullptr)
+        return nullptr;
+    
+    Node* current = nullptr;
+    std::queue<Node*> q;
+    dll::dll_end_points* DLL_terminals = dll::emptyDLL();
+    q.push(root);
+    while(!q.empty())
+    {
+        current = q.front();q.pop();
+        insert_tail(DLL_terminals->tail,current->val);
+
+        if(current->left != nullptr) q.push(current->left);
+        if(current->right != nullptr) q.push(current->right);
+
+    }
+    return DLL_terminals;
+
+}
 }
 
 using namespace binary_tree;
@@ -300,13 +324,17 @@ int main()
     //top_view(root);
     //bottom_view(root);
     //right_view(root);
-    left_view(root);
+    //left_view(root);
+
     //print_preorder(root);
     //std::cout<<"\n";
     //print_inorder(root);
     //std::cout<<"\n";
     //print_postorder(root);
     //std::cout<<"\n";
-    //depth_first_print(root);
+
+    dll::dll_end_points* dll = new dll::dll_end_points();
+    dll =binary_tree_to_dll(root);
+    dll:print_dll(dll->head);
     return 0;
 }

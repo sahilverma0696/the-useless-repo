@@ -17,10 +17,35 @@ Node::Node()
     previous = nullptr;
     val = -999;
     next = nullptr;
-}
+};
 
+struct dll_end_points
+{
+    Node* head;
+    Node* tail;
+    dll_end_points();
+};
+
+dll_end_points::dll_end_points()
+{
+    head = nullptr;
+    tail = nullptr;
+}
 void insert_tail(Node* &tail,int value);
 
+dll_end_points* emptyDLL()
+{
+    Node* head = new Node();
+    Node* tail = new Node();
+
+    head->next = tail;
+    tail->previous = head;
+    
+    dll_end_points* ends = new dll_end_points();
+    ends->head = head;
+    ends->tail = tail;
+    return ends;
+}
 void makeDLL(Node* &root, std::vector<int> &values)
 {
     if(root == nullptr)
@@ -81,7 +106,7 @@ void print_dll(Node* root)
 
 }
 
-
+/*
 using namespace dll;
 int main()
 {   
@@ -93,3 +118,4 @@ int main()
     print_dll(root);
     return 0;
 }
+*/
