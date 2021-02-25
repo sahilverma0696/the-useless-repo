@@ -2,7 +2,8 @@
 #include<queue>
 #include<stack>
 #include<map>
-
+namespace binary_tree
+{
 
 struct Node
 {
@@ -278,6 +279,10 @@ void right_view(Node* root)
     }
     std::cout<<"\n";
 }
+
+}
+
+using namespace binary_tree;
 
 int main()
 {
