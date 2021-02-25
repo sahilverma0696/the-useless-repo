@@ -50,6 +50,20 @@ void insert_tail(Node* &tail,int value)
     tail->previous = new_node;
 }
 
+void insert_head(Node* &root,int value)
+{
+    if(root == nullptr)
+        return;
+    Node* next = root->next;
+    Node* new_node = new Node();
+    new_node->val = value;
+
+    root->next = new_node;
+    new_node->previous = root;
+
+    new_node->next = next;
+    next->previous = new_node;
+}
 void print_dll(Node* root)
 {
     if(root == nullptr)
@@ -61,10 +75,12 @@ void print_dll(Node* root)
         std::cout<<current->val;
         current = current->next;
     }
+    std::cout<<"\n";
 }
 
 
 }
+
 
 using namespace dll;
 int main()
@@ -72,6 +88,8 @@ int main()
     std::vector<int> values {1,2,3,4,5,6,7,8,9};
     Node* root = new Node();
     makeDLL(root,values);
+    print_dll(root);
+    insert_head(root,10);
     print_dll(root);
     return 0;
 }
