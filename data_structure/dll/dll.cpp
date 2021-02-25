@@ -31,7 +31,11 @@ dll_end_points::dll_end_points()
     head = nullptr;
     tail = nullptr;
 }
+dll_end_points* emptyDLL();
+void makeDLL(Node* &root, std::vector<int> &values);
 void insert_tail(Node* &tail,int value);
+void insert_head(Node* &root,int value);
+void print_dll(Node* root);
 
 dll_end_points* emptyDLL()
 {

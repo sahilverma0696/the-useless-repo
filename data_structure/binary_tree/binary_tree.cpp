@@ -26,6 +26,7 @@ void depth_first_print(Node* root);
 void breadth_first_print(Node* root);
 void delete_node(Node* &root, int value);// have to complete
 void print_leaf_nodes(Node* root);
+int  count_leaf_nodes(Node* root);
 void top_view(Node* root);
 void __top_view_helper__(Node* root,std::map<int,int> &map,int h_dist);
 void bottom_view(Node* root);
@@ -197,6 +198,13 @@ void print_leaf_nodes(Node* root)
 
 }
 
+int count_leaf_nodes(Node* root)
+{
+    if(root->left  == nullptr || root->right == nullptr)
+        return 1;
+    
+    return count_leaf_nodes(root->left) + count_leaf_nodes(root->right);
+}
 void top_view(Node* root)
 {
     if(root == nullptr)
@@ -319,7 +327,9 @@ int main()
     insert_node(root,values);
     breadth_first_print(root);
     //depth_first_print(root);
+
     //print_leaf_nodes(root);
+    //std::cout<<count_leaf_nodes(root);
 
     //top_view(root);
     //bottom_view(root);
@@ -332,9 +342,11 @@ int main()
     //std::cout<<"\n";
     //print_postorder(root);
     //std::cout<<"\n";
-
+/*
     dll::dll_end_points* dll = new dll::dll_end_points();
     dll =binary_tree_to_dll(root);
     dll:print_dll(dll->head);
+*/
+
     return 0;
 }
