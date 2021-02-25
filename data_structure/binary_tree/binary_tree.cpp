@@ -134,6 +134,7 @@ void depth_first_print(Node* root)
         std::cout<<current->val;
         current = current->right;
     }
+    std::cout<<"\n";
 
 }
 
@@ -156,6 +157,7 @@ void breadth_first_print(Node* root)
         if(current->right!=nullptr)
             q.push(current->right);
     }
+    std::cout<<"\n";
 }
 
 void delete_node(Node* &root, int value)
@@ -220,25 +222,64 @@ void __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist)
 }
 void left_view(Node* root)
 {
-    return;
+    if(root == nullptr)
+        return;
+    std::queue<Node*> q;
+    q.push(root);
+    Node* current = nullptr;
+    while(!q.empty())
+    {
+        int size = q.size();
+        for(int i = 0;i<size;i++)
+        {
+            current = q.front();q.pop();
+            if(i == 0)
+                std::cout<<current->val;
+            if(current->left != nullptr) q.push(current->left);
+            if(current->right != nullptr) q.push(current->right);
+        }
+    }
 }
 void right_view(Node* root)
 {
-    return;
+    if(root == nullptr)
+        return;
+    std::queue<Node*> q;
+    q.push(root);
+    while(!q.empty())
+    {
+        int size = q.size();
+        for(int i =0; i<size;i++)
+        {
+            Node* current = q.front();q.pop();
+            if(i == size -1)
+            {
+                std::cout<<current->val;
+            }
+            if(current->left != nullptr) q.push(current->left);
+            if(current->right != nullptr) q.push(current->right);
+        }
+    }
+    std::cout<<"\n";
 }
 
 int main()
 {
     Node* root = new Node();
     std::queue<int> values;
+
     for(int i = 1; i<8;i++)
         values.push(i);
+
     insert_node(root,values);
     breadth_first_print(root);
-    std::cout<<"\n";
+    //depth_first_print(root);
     //print_leaf_nodes(root);
-    top_view(root);
-    bottom_view(root);
+
+    //top_view(root);
+    //bottom_view(root);
+    //right_view(root);
+    left_view(root);
     //print_preorder(root);
     //std::cout<<"\n";
     //print_inorder(root);
