@@ -24,7 +24,6 @@ void print_inorder(Node* node);
 void print_postorder(Node* node);
 void depth_first_print(Node* root);
 void breadth_first_print(Node* root);
-void delete_node(Node* &root, int value);// have to complete
 void print_leaf_nodes(Node* root);
 int  count_leaf_nodes(Node* root);
 void top_view(Node* root);
@@ -34,7 +33,10 @@ void __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist);
 void left_view(Node* root);
 void right_view(Node* root);
 dll::dll_end_points* binary_tree_to_dll(Node* root);
-
+void delete_node(Node* &root, int value);// have to complete
+int  getLevel(Node* root);
+int  getHeight(Node* root);
+int  getEdges(Node* root);
 Node::Node()
 {
     left = nullptr;
@@ -181,10 +183,6 @@ void breadth_first_print(Node* root)
     std::cout<<"\n";
 }
 
-void delete_node(Node* &root, int value)
-{
-    return;
-}
 
 void print_leaf_nodes(Node* root)
 {   
@@ -205,6 +203,7 @@ int count_leaf_nodes(Node* root)
     
     return count_leaf_nodes(root->left) + count_leaf_nodes(root->right);
 }
+
 void top_view(Node* root)
 {
     if(root == nullptr)
@@ -312,6 +311,46 @@ dll::dll_end_points* binary_tree_to_dll(Node* root)
     return DLL_terminals;
 
 }
+
+void delete_node(Node* &root, int value)
+{
+
+    return;
+}
+
+int getLevel(Node* root)
+{
+    if(root->left == nullptr || root->right == nullptr)
+        return 1;
+
+    int left  =1+getLevel(root->left);
+    int right =1+getLevel(root->right);
+
+    return (left>right)?left:right;
+}
+
+int getHeight(Node*root)
+{
+    if(root->left == nullptr || root->right == nullptr)
+        return 0;
+
+    int left  =1+getHeight(root->left);
+    int right =1+getHeight(root->right);
+
+    return (left>right)?left:right;
+}
+
+int getEdges(Node* root)
+{
+    if(root->left == nullptr && root->right == nullptr)
+        return 0;
+    
+    int left_edges = 1+getEdges(root->left);
+    int right_edges = 1+getEdges(root->right);
+
+    return left_edges+right_edges;
+}
+
 }
 
 using namespace binary_tree;
@@ -347,6 +386,11 @@ int main()
     dll =binary_tree_to_dll(root);
     dll:print_dll(dll->head);
 */
+    //std::cout<<getlevel(root);
+    //std::cout<<getHeight(root);
+    //std::cout<<getEdges(root);
+
+
 
     return 0;
 }
