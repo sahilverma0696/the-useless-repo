@@ -12,14 +12,30 @@ struct Node
     Node();
 };
 
+//prototypes
+void insert_node(Node* root);
+void insert_node(Node* root,std::queue<int> values);
+void print_preorder(Node* node);
+void print_inorder(Node* node);
+void print_postorder(Node* node);
+void depth_first_print(Node* root);
+void breadth_first_print(Node* root);
+void delete_node(Node* &root, int value);
+void print_leaf_nodes(Node* root);
+void top_view(Node* root);
+void __top_view_helper__(Node* root,std::map<int,int> &map,int h_dist);
+void bottom_view(Node* root);
+void __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist);
+void left_view(Node* root);
+void right_view(Node* root);
+
+
 Node::Node()
 {
     left = nullptr;
     right = nullptr;
     val = 0;
 }
-void __top_view_helper__(Node* root,std::map<int,int> &map,int h_dist);
-void __bottom_view_helper__(Node* root, std::map<int,int> &map, int h_dist);
 void insert_node(Node* root)
 {
     if(root == nullptr)
