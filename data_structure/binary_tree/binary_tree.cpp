@@ -199,6 +199,7 @@ void    print_leaf_nodes    (Node* root)
 
 }
 
+
 int     count_leaf_nodes    (Node* root)
 {
     if(root->left  == nullptr || root->right == nullptr)
@@ -316,8 +317,7 @@ dll::   dll_end_points* binary_tree_to_dll(Node* root)
 }
 
 void    delete_node         (Node* &root, int value)
-{
-
+{   
     return;
 }
 
@@ -354,6 +354,21 @@ int     getEdges            (Node* root)
     return left_edges+right_edges;
 }
 
+Node*   getLastNode         (Node* root)
+{
+    if(root == nullptr)
+        return nullptr;
+    std::queue<Node*> q;
+    Node* current = nullptr;
+    q.push(root);
+    while(!q.empty())
+    {
+        current = q.front();q.pop();
+        if(current->left != nullptr) q.push(current->left);
+        if(current->right != nullptr) q.push(current->right); 
+    }
+        return current;
+}
 }
 
 using namespace binary_tree;
@@ -363,7 +378,7 @@ int main()
     Node* root = new Node();
     std::queue<int> values;
 
-    for(int i = 1; i<8;i++)
+    for(int i = 1; i<9;i++)
         values.push(i);
 
     insert_node(root,values);
@@ -371,7 +386,7 @@ int main()
     //depth_first_print(root);
 
     //print_leaf_nodes(root);
-    std::cout<<count_leaf_nodes(root);
+    //std::cout<<count_leaf_nodes(root);
 
     //top_view(root);
     //bottom_view(root);
@@ -392,6 +407,8 @@ int main()
     //std::cout<<getlevel(root);
     //std::cout<<getHeight(root);
     //std::cout<<getEdges(root);
+    Node* lastnode = getLastNode(root);
+    std::cout<<lastnode->val;
 
 
 
