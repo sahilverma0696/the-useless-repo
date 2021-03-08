@@ -99,6 +99,27 @@ void print_preorder(Node* root)
         print_preorder(root->right);
     }
 }
+
+void print_inorder(Node* root)
+{
+    if(root != nullptr)
+    {
+        
+        print_inorder(root->left);
+        std::cout<<root->val;
+        print_inorder(root->right);
+    }
+}
+void print_postorder(Node* root)
+{
+    if(root != nullptr)
+    {
+        
+        print_postorder(root->left);
+        print_postorder(root->right);
+        std::cout<<root->val;
+    }
+}
 }
 
 using namespace bst;
@@ -109,7 +130,10 @@ int main()
     Node* root = nullptr;
     insert_iterative(root,values);
     //__insert_itr_helper__(root,5);
-    print_preorder(root);
+    print_inorder(root);
+    std::cout<<"\n";
+    print_postorder(root);
+
 
     return 0;
 }

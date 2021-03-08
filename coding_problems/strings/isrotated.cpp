@@ -7,7 +7,7 @@ String rotated: check if string1 is a rotated string of string2.
 string1 = melonwater string2 = watermelon -> true
 */
 
-
+/* slow one 
 bool isRotated(string check, string original)
 {
     for(int i = 0;i<original.size();i++)
@@ -18,6 +18,17 @@ bool isRotated(string check, string original)
                 return true;
         }
     }
+    return false;
+}
+*/
+
+//fast one 
+
+bool isRotated(string check, string original)
+{
+    string temp = original + original;
+    if(temp.find(check) != string::npos)
+        return true;
     return false;
 }
 
