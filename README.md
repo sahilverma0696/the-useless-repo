@@ -14,5 +14,12 @@ Recursion includes 2 major steps
 ## Dynamic Programming
 
 1. Memoization 
+   1.Initialise the table to the changing variables +1 size, values to -1  
 2. Tabulation
+
+## Dynamic programming framwork related to optional selection 
+
+## Dynamic programming framwork related to recursive selection
+
+## Dynamic programming framwork related to string 
 
