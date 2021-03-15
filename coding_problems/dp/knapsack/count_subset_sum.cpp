@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// Count of subsets with sum equal to X
+
 // Recursive
 // int __count_subset_sum__(vector<int> numbers, int size,int target) {
 //     if(size == 0)
