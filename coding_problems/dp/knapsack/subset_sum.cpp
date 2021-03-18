@@ -8,7 +8,6 @@ int __subset__(vector<int> numbers,int size,int target, int memo[6][12])
     if(target == 0)
         return 1;
     int x =numbers[size - 1];
-
     numbers.pop_back();
     if(memo[size][target]!= -1) return memo[size][target];
     if(x>target)
