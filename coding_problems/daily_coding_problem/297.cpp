@@ -31,8 +31,21 @@ int minimum_drinks(unordered_map<int,vector<int>> input)
                 drinks.insert(*vec_itr);
         }
     }
-    for(auto set_itr = drinks.begin();set_itr != drinks.end();++set_itr)
-        cout<<*set_itr;
+    // for(auto set_itr = drinks.begin();set_itr != drinks.end();++set_itr)
+        // cout<<*set_itr;
+    map<int,vector<int>> drink;
+    
+    for(auto map_itr = input.begin();map_itr != input.end();++map_itr)
+    {
+        for(auto vec_itr = map_itr->second.begin();vec_itr != map_itr->second.end();++vec_itr)
+        {
+            drink[*vec_itr].push_back(map_itr->first);
+        }
+    }
+
+    // Make a new hashmap, this will be pointing to drinks to customers
+    // from this new hashmap will create a new hashset and compare with the length of new hashset with input size, increase count 
+    
     return 0;
 }
 
