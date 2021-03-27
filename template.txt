@@ -1,0 +1,45 @@
+// Basic c++ template 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	return 0;
+}
+
+
+
+// Timed c++ template 
+#include <iostream>
+#include<chrono>
+
+using namespace std;
+using namespace std::chrono;
+
+int main()
+{
+
+    auto start = high_resolution_clock::now();
+	
+    //
+	
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout <<"\n\n\nExecution Summary:\n"<< duration.count() << " microseconds\n";
+    
+	return 0;
+}
+
+
+// Bashrc alias function
+
+
+run()
+{
+
+    clear
+    g++ "$1"
+    ./a.out
+    echo -e""
+}
