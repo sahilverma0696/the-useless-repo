@@ -5,6 +5,15 @@ using namespace std;
 using namespace std::chrono;
 
 
+// Recursive 
+int climbStairs(int n) {
+    if(n < 0)
+        return 0;
+    if( n == 0 || n == 1)
+        return 1;
+    return climbStairs(n-1) + climbStairs(n-2);
+}
+// Memoized
 // int __fn__(int n, vector<int> mem)
 //     {
 //         if(n == 1 || n == 2)
@@ -22,6 +31,8 @@ using namespace std::chrono;
 //         return __fn__(n,mem);
 //     }
 
+
+// Bottom Up
 // int climbStairs(int n) {
 //         if(n == 1 || n==2)
 //             return n;
