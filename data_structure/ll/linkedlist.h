@@ -9,16 +9,17 @@ struct Node {
 
 class LinkedList {
 private:
-    Node* node;
+    Node* root;
+    void deleteNode(Node* node);
 public:
             LinkedList(int value);
             ~LinkedList();
     int     size();
     bool    isEmpty();
-    int     valueAt();
-    void    pushFront();
-    int     popFront();
-    void    pushBack();
+    int     valueAt( int index);
+    void    pushFront(int value);
+    void    popFront();
+    void    pushBack(int value);
     void    popBack();
     int     front();
     int     back();
