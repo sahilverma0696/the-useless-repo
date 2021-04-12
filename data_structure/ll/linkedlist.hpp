@@ -1,5 +1,6 @@
 #pragma once
 
+#include<unordered_map>
 namespace ll {
 struct Node {
     int value;
@@ -28,6 +29,7 @@ public:
     int     valueNfromEnd( int n);
     void    reverse();
     void    removeByValue(int value);
+    void    removeDuplicate();
 
 };
 

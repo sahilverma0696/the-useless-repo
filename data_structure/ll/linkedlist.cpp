@@ -209,5 +209,23 @@ void    LinkedList::removeByValue(int value) {
     else
         erase(poistion);
 }
+
+void    LinkedList::removeDuplicate() {
+    std::unordered_map<int,int> map;
+    Node* current = root;
+    int position =0;
+    while(current != nullptr)
+    {
+        if(map[current->value])
+            erase(position);
+        else
+        {
+            map[current->value]++;
+        }
+        current = current->next;
+        position++;
+    }
+
+}
 }
 

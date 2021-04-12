@@ -63,8 +63,17 @@ int main() {
     std::cout<<"\n";
 
     root->pushFront(3);
+    root->pushFront(3);
 
-    root->reverse();
+    // root->reverse();
+
+    for(int i = 0; i<head->size();i++)
+    {
+        std::cout<<head->valueAt(i)<<"\t";
+    }
+    std::cout<<"\n";
+    std::cout<<"Duplicate Checks\n";
+    root->removeDuplicate();
 
     for(int i = 0; i<head->size();i++)
     {
