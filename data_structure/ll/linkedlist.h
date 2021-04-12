@@ -10,7 +10,7 @@ struct Node {
 class LinkedList {
 private:
     Node* root;
-    void deleteNode(Node* node);
+    void deleteNode(Node* &node);
 public:
             LinkedList(int value);
             ~LinkedList();
