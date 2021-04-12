@@ -225,6 +225,28 @@ void    LinkedList::removeDuplicate() {
         current = current->next;
         position++;
     }
+}
+
+bool    LinkedList::isPallindrome() {
+    std::stack<int> stack_values;
+    Node* slow = root;
+    Node* fast = root;
+
+    while(fast!=nullptr && fast->next != nullptr && fast->next->next!= nullptr )
+    {
+        stack_values.push(slow->value);
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    while(slow != nullptr)
+    {
+        if(stack_values.top() != slow->value)
+            return false;
+        stack_values.pop();
+        slow = slow->next;     
+    }
+    return true;
 
 }
 }

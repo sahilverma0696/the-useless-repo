@@ -1,6 +1,9 @@
 #pragma once
 
 #include<unordered_map>
+#include<stack>
+#include<iostream>
+
 namespace ll {
 struct Node {
     int value;
@@ -30,6 +33,7 @@ public:
     void    reverse();
     void    removeByValue(int value);
     void    removeDuplicate();
+    bool    isPallindrome();
 
 };
 
