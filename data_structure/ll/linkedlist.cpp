@@ -1,7 +1,6 @@
-#include"linkedlist.h"
+#include "linkedlist.hpp"
 
 namespace ll{
-
 Node::Node(int value) {
     this->value = value;
     next = nullptr;
@@ -14,6 +13,11 @@ LinkedList::LinkedList(int value) {
 
 LinkedList::~LinkedList() {
 
+}
+
+void    LinkedList::deleteNode(Node* &node) {
+    delete node;
+    node = nullptr;
 }
 
 int     LinkedList::size() {
@@ -32,9 +36,11 @@ bool    LinkedList::isEmpty() {
 }
 
 int     LinkedList::valueAt(int index) {
+    if(index > size())
+        return -999;
     int current_size = 0;
     Node* current = root;
-    while(current != nullptr || current_size != index)
+    while(current_size != index)
     {
         current = current->next;
         current_size++;
@@ -108,12 +114,14 @@ void    LinkedList::insert(int index, int value) {
 
     if(isEmpty())
     {
-        root->value;
         return;
     }
+    if(index == 0)
+        return pushFront(value);
+
     int position = 0;
     Node* current = root;
-    while(current->next != nullptr || position != index)
+    while(position < index && current->next != nullptr )
     {
         current = current->next;
         position++;
@@ -132,12 +140,16 @@ void    LinkedList::insert(int index, int value) {
 }
 
 void    LinkedList::erase(int index) {
-    if(isEmpty())
+    if(isEmpty() || index < 0)
         return;
+    if(index == 0)
+    {
+        return popFront();
+    }
     Node* current = root;
     Node* previous = nullptr;
     int position = 0;
-    while(current->next != nullptr || position != index)
+    while(position < index && current->next != nullptr )
     {
         previous = current;
         current = current->next;
@@ -165,37 +177,37 @@ int     LinkedList::valueNfromEnd( int n) {
 }
 
 void    LinkedList::reverse() {
-    Node* previous = root;
+    Node* previous = nullptr;
     Node* current = root;
-    Node* next = root->next;
-    while(next != nullptr)
+    Node* next = nullptr;
+    while(current != nullptr)
     {
-        current = next;
-        next = next->next;
+        next = current->next;
         current->next = previous;
         previous = current;
-        
+        current = next;
     }
+    root = previous;
 
 }
 
-void    LinkedList::removeValue(int value) {
+void    LinkedList::removeByValue(int value) {
     // removes first occurance
     Node* current = root;
     Node* previous = nullptr;
+    int poistion = 0;
 
-    while(current->value != value || current != nullptr)
+    while(current->next != nullptr && current->value != value )
     {
         previous = current;
         current = current->next;
+        poistion++;
     }
-    if(current == nullptr)
+
+    if(current->value != value)
         return;
-    else {
-        previous->next = current->next;
-        deleteNode(current);
-    }
+    else
+        erase(poistion);
+}
 }
 
-
-}

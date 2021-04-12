@@ -27,7 +27,8 @@ public:
     void    erase(int index);
     int     valueNfromEnd( int n);
     void    reverse();
-    void    removeValue(int value);
+    void    removeByValue(int value);
 
 };
+
 }
