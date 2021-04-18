@@ -82,7 +82,8 @@ int main() {
     }
     std::cout<<"\n";
 
-    std::cout<<"Pallindrome Check\t"<<root->isPallindrome()<<"\n";
+    // std::cout<<"Pallindrome Check\t"<<root->isPallindrome()<<"\n";
 
+    std::cout<<"isCyclic\t"<<root->isCyclic();
     return 0;
 }

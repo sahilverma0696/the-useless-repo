@@ -249,5 +249,20 @@ bool    LinkedList::isPallindrome() {
     return true;
 
 }
+
+bool    LinkedList::isCyclic() {
+    Node* slow = root;
+    Node* fast = root;
+
+    fast = fast->next->next;
+    while(fast != nullptr && fast->next != nullptr && fast->next->next != nullptr && slow !=fast)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    if(fast == nullptr || fast->next == nullptr || fast->next->next == nullptr)
+        return false;
+    return true;
+}
 }
 

@@ -34,6 +34,7 @@ public:
     void    removeByValue(int value);
     void    removeDuplicate();
     bool    isPallindrome();
+    bool    isCyclic();
 
 };
 
