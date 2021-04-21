@@ -33,11 +33,12 @@ void bfs_print(vector<int>* &graph,int start,int capacity) {
     q.push(start);
     while(!q.empty()) {
         int node = q.front();q.pop();
-        visited[node] = true;
+        
         cout<<"Node\t"<<node<<"\n";
         for(auto part:graph[node])
         {
             if(!visited[part]) {
+                visited[part] = true;
                 q.push(part);
             }
         }
