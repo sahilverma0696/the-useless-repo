@@ -94,8 +94,8 @@ int main() {
     
 
     // print_adjacency(graph,capacity);
-    // bfs_print(graph,capacity,0);
-    dfs_print(graph,capacity);
+     bfs_print(graph,capacity,0);
+    // dfs_print(graph,capacity);
     return 0;
 
 

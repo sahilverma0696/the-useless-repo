@@ -109,6 +109,32 @@ bool check_cyclic_directed(vector<int>* &graph, int capacity) {
     return false;
 }
 
+void __t_s__(vector<int>* &graph, vector<int> &result,int start,bool visited[]) {
+    visited[start] = true;
+    for(int i = 0; i < graph[start].size();i++)
+    {
+        int new_node = graph[start][i];
+        if(!visited[new_node])
+        {
+            __t_s__(graph,result,new_node,visited);
+        }
+    }
+    result.push_back(start);
+
+}
+
+vector<int> topological_sorting(vector<int>* &graph, int start, int capacity) {
+    vector<int> result;
+    bool visited[capacity] = { false };
+
+    for(int i = 0; i <capacity;i++)
+    {
+        if(!visited[i])
+            __t_s__(graph,result,i,visited);
+    }
+    
+    return result;
+}
 int main() {
     // int capacity  = 5;
     // vector<int>* graph = nullptr;
@@ -128,24 +154,36 @@ int main() {
 
 
 
-    int capacity = 7;
+    // int capacity = 7;
+    // vector<int>* graph_directed = nullptr;
+    // make_graph(graph_directed,capacity);
+
+    // insert(graph_directed,1,2,false);
+    // insert(graph_directed,2,3,false);
+    // insert(graph_directed,3,1,false);
+    // insert(graph_directed,3,4,false);
+    // insert(graph_directed,4,5,false);
+    // insert(graph_directed,4,6,false);
+    // insert(graph_directed,6,5,false);
+
+    // // bfs_print(graph_directed,1,capacity);
+
+    // // cout<<check_cyclic_directed(graph_directed,capacity);
+
+    // print_adjacency(graph_directed,capacity);
+
+    int capacity = 6;
     vector<int>* graph_directed = nullptr;
     make_graph(graph_directed,capacity);
 
     insert(graph_directed,1,2,false);
-    insert(graph_directed,2,3,false);
-    insert(graph_directed,3,1,false);
+    insert(graph_directed,1,3,false);
     insert(graph_directed,3,4,false);
-    insert(graph_directed,4,5,false);
-    insert(graph_directed,4,6,false);
-    insert(graph_directed,6,5,false);
+    insert(graph_directed,5,4,false);
 
-    // bfs_print(graph_directed,1,capacity);
-
-    // cout<<check_cyclic_directed(graph_directed,capacity);
-
-    print_adjacency(graph_directed,capacity);
-
-
+    vector <int> topological_s = topological_sorting(graph_directed,1,capacity);
+    for( int i = 0; i < topological_s.size();i++) {
+        cout<<topological_s[i];
+    }
     return 0;
 }
