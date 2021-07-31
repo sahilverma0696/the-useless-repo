@@ -62,7 +62,7 @@ int lcs ( vector<char> s1,vector<char> s2)
             if(s1[i] == s2[j])
                 mem[i][j] = 1+ mem[i-1][j-1];
             else
-                mem[i][j] = max( mem[i][j-1], mem[i][j-1]);
+                mem[i][j] = max( mem[i][j-1], mem[i-1][j]);
         }
     }
     return mem[s1.size()][s2.size()];

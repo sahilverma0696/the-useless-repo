@@ -135,6 +135,74 @@ vector<int> topological_sorting(vector<int>* &graph, int start, int capacity) {
     
     return result;
 }
+
+bool __mother_node__(vector<int>* &graph,int node,bool visited[], int &count, int capacity) {
+    visited[node] = true;
+    count++;
+    if(count == capacity-1)
+        return true;
+    cout<<node<<"\t"<<count<<"\t"<<capacity<<"\n";
+    for( int i = 0; i < graph[node].size();i++) {
+        int new_node = graph[node][i];
+        if(!visited[new_node])
+        {
+            __mother_node__(graph,new_node,visited,count,capacity);
+        }
+    }
+    return false;
+}
+void dfs(vector<int>* &graph,int node,bool visited[])
+{
+    visited[node] = true;
+    //cout<<node<<"\t";
+    int i, newnode;
+    for(i=0;i<graph[node].size();i++){
+
+        newnode = graph[node][i];
+        if(!visited[newnode])
+            dfs(graph, newnode, visited);
+    }
+    
+}
+
+int matanode (vector<int>* &graph, int capacity)
+{
+    int node, i, last_visited;
+    bool visited[capacity+1]={false};
+
+    for(i=1;i<=capacity;i++){
+
+        if(!visited[i]){
+            dfs(graph, i, visited); 
+            last_visited = i;   
+        }
+    }
+    
+    for(i=0;i<capacity+1;i++)
+        visited[i] = false;
+    dfs(graph, last_visited, visited);
+    for(i=1;i<capacity+1;i++){
+
+        if(!visited[i])
+            return -1;
+    }
+    return last_visited;
+}
+int mother_node(vector<int>* &graph, int capacity ) {
+    bool visited[capacity] = { false };
+    int count  = 0;
+    for( int i = 1; i<=capacity; i++) {
+        if(__mother_node__(graph,i,visited,count,capacity))
+            return i;
+        for(int j = 0; j<=capacity; j++) 
+        {
+            visited[i]= false;
+        }
+        count  = 0;
+        
+    }
+    return -1;
+}
 int main() {
     // int capacity  = 5;
     // vector<int>* graph = nullptr;
@@ -179,11 +247,20 @@ int main() {
     insert(graph_directed,1,2,false);
     insert(graph_directed,1,3,false);
     insert(graph_directed,3,4,false);
-    insert(graph_directed,5,4,false);
+    //insert(graph_directed,5,4,false);
 
-    vector <int> topological_s = topological_sorting(graph_directed,1,capacity);
-    for( int i = 0; i < topological_s.size();i++) {
-        cout<<topological_s[i];
-    }
+    // vector <int> topological_s = topological_sorting(graph_directed,1,capacity);
+    // for( int i = 0; i < topological_s.size();i++) {
+    //     cout<<topological_s[i];
+    // }
+
+    // print_adjacency(graph_directed,capacity);
+    // cout<<"\n\n\n\n";
+    // int mother  = mother_node(graph_directed,4);
+    // cout<<mother;
+    cout<<matanode(graph_directed, 4);
+    
+    
     return 0;
 }
+
